@@ -85,5 +85,36 @@ public class ServicoService {
         }
     }
 
+    // Relatório, calcula e exibe estatísticas dos serviços
+    public void exibirRelatorio() {
+        if (servicos.isEmpty()) {
+            System.out.println("\u001B[31mNenhum serviço para gerar relatório\u001B[0m");
+            return;
+        }
+
+        double somaPrecos = 0;
+        int somaDuracoes = 0;
+        Servico maisCaro = servicos.get(0);
+        Servico maisRapido = servicos.get(0);
+
+        for (Servico s : servicos) {
+            somaPrecos += s.getPreco();
+            somaDuracoes += s.getDuracaoMinutos();
+
+            if (s.getPreco() > maisCaro.getPreco()) maisCaro = s;
+            if (s.getDuracaoMinutos() < maisRapido.getDuracaoMinutos()) maisRapido = s;
+        }
+
+        double precoMedio = somaPrecos / servicos.size();
+        double duracaoMedia = (double) somaDuracoes / servicos.size();
+
+        System.out.println("\n\033[35m======\033[0m RELATÓRIO DE SERVIÇOS \033[35m======\033[0m");
+        System.out.printf("Total de serviços cadastrados: %d%n", servicos.size());
+        System.out.printf("Preço médio dos serviços: R$ %.2f%n", precoMedio);
+        System.out.printf("Duração média dos serviços: %.0f minutos%n", duracaoMedia);
+        System.out.println("Serviço mais caro:  " + maisCaro.getNome() + " (R$ " + String.format("%.2f", maisCaro.getPreco()) + ")");
+        System.out.println("Serviço mais rápido: " + maisRapido.getNome() + " (" + maisRapido.getDuracaoMinutos() + " min)");
+    }
+
 
 }
