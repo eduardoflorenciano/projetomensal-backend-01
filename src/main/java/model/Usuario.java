@@ -14,4 +14,21 @@ public abstract class Usuario {
         this.senha = senha;
     }
 
+    // Retorna o nome do usuário
+    public String getNome() {
+        return nome;
+    }
+
+    // Retorna o email do usuário
+    public String getEmail() {
+        return email;
+    }
+
+    // Retorna a senha do usuário, usada pelo AuthService no login
+    public String getSenha() {
+        return senha;
+    }
+
+    // Método abstrato, cada subclasse exibe o perfil do seu jeito (polimorfismo)
+    public abstract String exibirPerfil();
 }
