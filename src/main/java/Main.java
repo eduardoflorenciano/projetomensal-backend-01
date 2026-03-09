@@ -255,4 +255,65 @@ public class Main {
             }
         }
     }
+
+    // Menu interativo de categorias
+    static String escolhaCategoria() {
+        String categoria = "";
+        boolean categoriaValida = false;
+
+        while (!categoriaValida) {
+            System.out.println("\n\033[34m======\033[0m MENU DE CATEGORIA \033[34m======\033[0m");
+            int menuCategoria = lerInteiro("1 - Pneu\n2 - Válvulas e Bicos\n3 - Câmaras de Ar\n4 - Produtos Químicos \nEscolha uma opção: ");
+
+            switch (menuCategoria) {
+                case 1:
+                    System.out.println("\n\033[34m======\033[0m MENU DE PNEUS \033[34m======\033[0m");
+                    int menuPneus = lerInteiro(
+                            "1 - Pneus de carro" +
+                                    "\n2 - Pneus de caminhonete" +
+                                    "\n3 - Pneus de caminhão" +
+                                    "\n0 - Sair" +
+                                    "\nEscolha uma opção: ");
+
+                    switch (menuPneus) {
+                        case 0:
+                            System.out.println("\u001B[33mVoltando ao menu de categorias\u001B[0m");
+                            break;
+                        case 1:
+                            categoria = "Pneus de carro";
+                            categoriaValida = true;
+                            break;
+                        case 2:
+                            categoria = "Pneus de caminhonete";
+                            categoriaValida = true;
+                            break;
+                        case 3:
+                            categoria = "Pneus de caminhão";
+                            categoriaValida = true;
+                            break;
+                        default:
+                            System.out.println("\u001B[31mOpção inválida!\u001B[0m");
+                            break;
+                    }
+                    break;
+                case 2:
+                    categoria = "Válvulas e Bicos";
+                    categoriaValida = true;
+                    break;
+                case 3:
+                    categoria = "Câmaras de Ar";
+                    categoriaValida = true;
+                    break;
+                case 4:
+                    categoria = ("Produtos Químicos");
+                    categoriaValida = true;
+                    break;
+                default:
+                    System.out.println("\u001B[31mOpção inválida!\u001B[0m");
+                    break;
+            }
+        }
+
+        return categoria;
+    }
 }
