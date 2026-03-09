@@ -13,5 +13,23 @@ public class Servico extends Item {
         this.tipo = tipo;
     }
 
+    // Retorna a duração do serviço em minutos
+    public int getDuracaoMinutos() {
+        return duracaoMinutos;
+    }
 
+    // Atualiza a duração do serviço
+    public void setDuracaoMinutos(int duracaoMinutos) {
+        this.duracaoMinutos = duracaoMinutos;
+    }
+
+    // Retorna o tipo do serviço
+    public String getTipo() {
+        return tipo;
+    }
+
+    // Atualiza o tipo de serviço
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }
