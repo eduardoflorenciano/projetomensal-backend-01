@@ -31,4 +31,18 @@ public class ProdutoService {
             System.out.println(p.exibirDetalhes());
         }
     }
+
+    // Atualizar, busca pelo ID e substitui os dados do produto
+    public void atualizar(int id, String novoNome, double novoPreco, int novoEstoque, String novaCategoria) {
+        Produto produto = buscarPorId(id);
+        if (produto == null) {
+            System.out.println("\u001B[31mProduto com ID\u001B[0m " + id + " \u001B[31mnão encontrado\u001B[0m");
+            return;
+        }
+        produto.setNome(novoNome);
+        produto.setPreco(novoPreco);
+        produto.setQuantidadeEstoque(novoEstoque);
+        produto.setCategoria(novaCategoria);
+        System.out.println("\u001B[32mProduto atualizado com sucesso!\u001B[0m");
+    }
 }
