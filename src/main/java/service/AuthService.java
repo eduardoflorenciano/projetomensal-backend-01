@@ -30,6 +30,14 @@ public class AuthService {
         }
         return null;
     }
-
-
+    // Busca um usuário na lista pelo email, reutilizado em login e cadastrarUsuario
+    private Usuario buscarPorEmail(String email) {
+        for (Usuario u : usuarios) {
+            if (u.getEmail().equalsIgnoreCase(email)) {
+                return u;
+            }
+        }
+        return null;
+    }
 }
+
