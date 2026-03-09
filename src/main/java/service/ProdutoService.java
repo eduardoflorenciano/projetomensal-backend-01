@@ -45,4 +45,30 @@ public class ProdutoService {
         produto.setCategoria(novaCategoria);
         System.out.println("\u001B[32mProduto atualizado com sucesso!\u001B[0m");
     }
+
+    // Remover, busca pelo ID e remove o produto da lista
+    public void remover(int id) {
+        Produto produto = buscarPorId(id);
+        if (produto == null) {
+            System.out.println("\u001B[31mProduto com ID\u001B[0m " + id + " \u001B[31mnão encontrado\u001B[0m");
+            return;
+        }
+        produtos.remove(produto);
+        System.out.println("\u001B[32mProduto removido com sucesso!\u001B[0m");
+    }
+
+    // Filtro, exibe produtos cujo nome contenha o texto buscado
+    public void buscarPorNome(String nome) {
+        System.out.println("\n\033[34m======\033[0m BUSCA POR NOME: " + nome + " \033[34m======\033[0m");
+        boolean encontrou = false;
+        for (Produto p : produtos) {
+            if (p.getNome().toLowerCase().contains(nome.toLowerCase())) {
+                System.out.println(p.exibirDetalhes());
+                encontrou = true;
+            }
+        }
+        if (!encontrou) {
+            System.out.println("\u001B[31mNenhum produto encontrado com esse nome\u001B[0m");
+        }
+    }
 }
