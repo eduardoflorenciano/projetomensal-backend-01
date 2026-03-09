@@ -117,4 +117,21 @@ public class Main {
         return null;
     }
 
+    // Coleta os dados de um novo usuário e registra no sistema
+    static void fluxoDeCadastro() {
+        System.out.println("\n\u001B[36m======\u001B[0m CADASTRAR NOVO USUÁRIO \u001B[36m======\u001B[0m");
+        String nome = lerTexto("Seu nome: ");
+        String email = lerTexto("Email: ");
+        String senha = lerSenha("Crie uma senha: ");
+        authService.cadastrarUsuario(nome, email, senha);
+    }
+
+    // Exibe as opções do menu principal
+    static void exibirMenuPrincipal() {
+        System.out.println("\n\u001B[36m======\u001B[0m MENU PRINCIPAL \u001B[36m======\u001B[0m");
+        System.out.println("1 - Gerenciar Produtos");
+        System.out.println("2 - Gerenciar Serviços");
+        System.out.println("0 - Sair");
+        System.out.println("\u001B[36m============================\u001B[0m");
+    }
 }
