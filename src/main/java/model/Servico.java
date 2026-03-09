@@ -32,4 +32,13 @@ public class Servico extends Item {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    // Implementação do método abstrato, exibe detalhes específicos de Servico em roxo
+    @Override
+    public String exibirDetalhes() {
+        return String.format(
+                "\033[35m[SERVIÇO]\033[0m ID: %d | Nome: %s | Tipo: %s | Preço: R$ %.2f | Duração: %d min",
+                getId(), getNome(), tipo, getPreco(), duracaoMinutos
+        );
+    }
 }
