@@ -13,3 +13,28 @@ public abstract class Item {
         this.nome = nome;
         this.preco = preco;
     }
+
+    // Retorna o id do item
+    public int getId() {
+        return id;
+    }
+
+    // Retorna o nome do item
+    public String getNome() {
+        return nome;
+    }
+
+    // Atualiza o nome do item
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    // Retorna o preço do item
+    public double getPreco() {
+        return preco;
+    }
+
+    // Atualiza o preço do item
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
