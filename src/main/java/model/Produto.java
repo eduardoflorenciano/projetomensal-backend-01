@@ -31,3 +31,13 @@ public class Produto extends Item {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
+
+    // Implementação do método abstrato, exibe detalhes específicos de Produto em azul
+    @Override
+    public String exibirDetalhes() {
+        return String.format(
+                "\033[34m[PRODUTO]\033[0m ID: %d | Nome: %s | Categoria: %s | Preço: R$ %.2f | Estoque: %d unidades",
+                getId(), getNome(), categoria, getPreco(), quantidadeEstoque
+        );
+    }
+}
