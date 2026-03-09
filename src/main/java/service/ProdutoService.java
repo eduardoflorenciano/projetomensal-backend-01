@@ -71,8 +71,8 @@ public class ProdutoService {
             System.out.println("\u001B[31mNenhum produto encontrado com esse nome\u001B[0m");
         }
     }
-
     // Filtro, exibe produtos que pertençam à categoria buscada
+
     public void buscarPorCategoria(String categoria) {
         System.out.println("\n\033[34m======\033[0m BUSCA POR CATEGORIA: " + categoria + " \033[34m======\033[0m");
         boolean encontrou = false;
@@ -85,6 +85,47 @@ public class ProdutoService {
         if (!encontrou) {
             System.out.println("\u001B[31mNenhum produto encontrado nessa categoria\u001B[0m");
         }
+    }
+
+    // Relatório, calcula e exibe estatísticas dos produtos
+    public void exibirRelatorio() {
+        if (produtos.isEmpty()) {
+            System.out.println("\u001B[31mNenhum produto para gerar relatório\u001B[0m");
+            return;
+        }
+
+        double valorTotalEstoque = 0;
+        int totalUnidades = 0;
+        Produto maisCaro = produtos.get(0);
+        Produto maisBarato = produtos.get(0);
+
+        for (Produto p : produtos) {
+            valorTotalEstoque += p.getPreco() * p.getQuantidadeEstoque();
+            totalUnidades += p.getQuantidadeEstoque();
+
+            if (p.getPreco() > maisCaro.getPreco()) maisCaro = p;
+            if (p.getPreco() < maisBarato.getPreco()) maisBarato = p;
+        }
+
+        double precoMedio = valorTotalEstoque / totalUnidades;
+
+        System.out.println("\n\033[34m======\033[0m RELATÓRIO DE PRODUTOS \033[34m======\033[0m");
+        System.out.printf("Total de tipos de produto: %d%n", produtos.size());
+        System.out.printf("Total de unidades em estoque: %d%n", totalUnidades);
+        System.out.printf("Valor total em estoque: R$ %.2f%n", valorTotalEstoque);
+        System.out.printf("Preço médio ponderado: R$ %.2f%n", precoMedio);
+        System.out.println("Produto mais caro: " + maisCaro.getNome() + " (R$ " + String.format("%.2f", maisCaro.getPreco()) + ")");
+        System.out.println("Produto mais barato: " + maisBarato.getNome() + " (R$ " + String.format("%.2f", maisBarato.getPreco()) + ")");
+    }
+
+    // Busca um produto na lista pelo ID, reutilizado em atualizar() e remover()
+    private Produto buscarPorId(int id) {
+        for (Produto p : produtos) {
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
     }
 
 
