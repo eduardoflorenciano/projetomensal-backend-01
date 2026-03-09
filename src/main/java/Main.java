@@ -316,4 +316,72 @@ public class Main {
 
         return categoria;
     }
+
+    // Loop do submenu de serviços, permanece até o usuário voltar
+    static void menuServicos() {
+        int opcao = -1;
+
+        while (opcao != 0) {
+            System.out.println("\n\033[35m======\033[0m MENU DE SERVIÇOS \033[35m======\033[0m");
+            System.out.println("1 - Cadastrar Serviço");
+            System.out.println("2 - Listar Serviços");
+            System.out.println("3 - Atualizar Serviço");
+            System.out.println("4 - Remover Serviço");
+            System.out.println("5 - Buscar por Nome");
+            System.out.println("6 - Buscar por Tipo");
+            System.out.println("7 - Relatório de Serviços");
+            System.out.println("0 - Voltar");
+            System.out.println("\033[35m==============================\033[0m");
+
+            opcao = lerInteiro("Escolha uma opção: ");
+
+            switch (opcao) {
+                case 1:
+                    System.out.println("\n\033[35m======\033[0m CADASTRAR SERVIÇO \033[35m======\033[0m");
+                    String nome = lerTexto("Nome do serviço: ");
+                    double preco = lerDouble("Preço (ex: 149.60): R$ ");
+                    int duracao = lerInteiro("Duração em minutos (ex: 60): ");
+                    String tipo = lerTexto("Tipo (ex: Troca, Revisão, Alinhamento, etc): ");
+                    servicoService.cadastrar(nome, preco, duracao, tipo);
+                    break;
+                case 2:
+                    servicoService.listarTodos();
+                    break;
+                case 3:
+                    System.out.println("\n\033[35m======\033[0m ATUALIZAR SERVIÇO \033[35m======\033[0m");
+                    servicoService.listarTodos();
+                    int idAtualizarS = lerInteiro("ID do serviço a atualizar: ");
+                    String novoNomeS = lerTexto("Novo nome: ");
+                    double novoPrecoS = lerDouble("Novo preço: R$ ");
+                    int novaDuracao = lerInteiro("Nova duração em minutos: ");
+                    String novoTipo = lerTexto("Novo tipo: ");
+                    servicoService.atualizar(idAtualizarS, novoNomeS, novoPrecoS, novaDuracao, novoTipo);
+                    break;
+                case 4:
+                    System.out.println("\n\033[35m=====\033[0m REMOVER SERVIÇO \033[35m======\033[0m");
+                    servicoService.listarTodos();
+                    int idRemoverS = lerInteiro("ID do serviço a remover: ");
+                    servicoService.remover(idRemoverS);
+                    break;
+                case 5:
+                    String buscarNomeS = lerTexto("Digite o nome para buscar: ");
+                    servicoService.buscarPorNome(buscarNomeS);
+                    break;
+                case 6:
+                    String buscarTipo = lerTexto("Digite o tipo para buscar: ");
+                    servicoService.buscarPorTipo(buscarTipo);
+                    break;
+                case 7:
+                    servicoService.exibirRelatorio();
+                    break;
+                case 0:
+                    System.out.println("\u001B[33mVoltando ao menu principal\u001B[0m");
+                    break;
+                default:
+                    System.out.println("\u001B[31mOpção inválida! Tente novamente\u001B[0m");
+            }
+        }
+    }
+
+
 }
