@@ -52,4 +52,41 @@ public class Main {
         scanner.close();
     }
 
+    // Exibe o menu de login e fica em loop até o login ser concluído
+    static Usuario telaDeLogin() {
+        Usuario logado = null;
+
+        while (logado == null) {
+            System.out.println("\n\u001B[36m===================================\u001B[0m");
+            System.out.println("         SISTEMA - LOGIN         ");
+            System.out.println("\u001B[36m===================================\u001B[0m");
+            System.out.println("1 - Entrar                     ");
+            System.out.println("2 - Cadastrar novo usuário     ");
+            System.out.println("0 - Sair                       ");
+            System.out.println("\u001B[36m===================================\u001B[0m");
+
+            int opcao = lerInteiro("Escolha uma opção: ");
+
+            switch (opcao) {
+                case 1:
+                    // Se o login falhar, logado fica null e o loop repete
+                    logado = fluxoDeLogin();
+                    break;
+                case 2:
+                    fluxoDeCadastro();
+                    break;
+                case 0:
+                    System.out.println("\u001B[33mSaindo do sistema\u001B[0m");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("\u001B[31mOpção inválida!\u001B[0m");
+            }
+        }
+
+        return logado;
+    }
+
+
+
 }
