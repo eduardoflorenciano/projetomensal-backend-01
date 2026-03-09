@@ -55,5 +55,35 @@ public class ServicoService {
         System.out.println("\u001B[32mServiço removido com sucesso!\u001B[0m");
     }
 
+    // Filtro, exibe serviços cujo nome contenha o texto buscado
+    public void buscarPorNome(String nome) {
+        System.out.println("\n\033[35m======\033[0m BUSCA POR NOME: " + nome + " \033[35m======\033[0m");
+        boolean encontrou = false;
+        for (Servico s : servicos) {
+            if (s.getNome().toLowerCase().contains(nome.toLowerCase())) {
+                System.out.println(s.exibirDetalhes());
+                encontrou = true;
+            }
+        }
+        if (!encontrou) {
+            System.out.println("\u001B[31mNenhum serviço encontrado com esse nome\u001B[0m");
+        }
+    }
+
+    // Filtro, exibe serviços que correspondam ao tipo buscado
+    public void buscarPorTipo(String tipo) {
+        System.out.println("\n\033[35m======\033[0m BUSCA POR TIPO: " + tipo + " \033[35m======\033[0m");
+        boolean encontrou = false;
+        for (Servico s : servicos) {
+            if (s.getTipo().toLowerCase().contains(tipo.toLowerCase())) {
+                System.out.println(s.exibirDetalhes());
+                encontrou = true;
+            }
+        }
+        if (!encontrou) {
+            System.out.println("\u001B[31mNenhum serviço encontrado com esse tipo\u001B[0m");
+        }
+    }
+
 
 }
