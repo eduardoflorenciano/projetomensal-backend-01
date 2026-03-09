@@ -1,6 +1,6 @@
 # 🚗 Sistema de gestão de produtos e serviços da Auto Center Silva
 
-## 🙎 Versão 01 - Membros
+## 🙎 Membros
 
 Eduardo Florenciano dos Santos <br>
 Lucas Eduardo Zarza de Barros <br>
