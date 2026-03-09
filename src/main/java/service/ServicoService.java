@@ -1,7 +1,32 @@
 package service;
+import model.Servico;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServicoService {
-    public static void main(String[] args) {
-        System.out.println("Teste");
+    // Lista de serviços cadastrados no sistema
+    private List<Servico> servicos = new ArrayList<>();
+
+    // Controla o ID automático, incrementado a cada novo serviço
+    private int proximoId = 1;
+
+    // Cadastrar, cria um novo Servico e adiciona na lista
+    public void cadastrar(String nome, double preco, int duracaoMinutos, String tipo) {
+        Servico novoServico = new Servico(proximoId, nome, preco, duracaoMinutos, tipo);
+        servicos.add(novoServico);
+        proximoId++;
+        System.out.println("\u001B[32mServiço cadastrado com sucesso! ID:\u001B[0m " + novoServico.getId());
+    }
+
+    // Listar, exibe todos os serviços cadastrados
+    public void listarTodos() {
+        if (servicos.isEmpty()) {
+            System.out.println("\u001B[31mNenhum serviço cadastrado\u001B[0m");
+            return;
+        }
+        System.out.println("\n\033[35m======\033[0m LISTA DE SERVIÇOS \033[35m======\033[0m");
+        for (Servico s : servicos) {
+            System.out.println(s.exibirDetalhes());
+        }
     }
 }

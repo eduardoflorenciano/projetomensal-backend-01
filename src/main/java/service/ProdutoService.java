@@ -3,9 +3,7 @@ import model.Produto;
 import java.util.ArrayList;
 import java.util.List;
 public class ProdutoService {
-    public static void main(String[] args) {
-        System.out.println("Teste");
-    }
+
     // Lista de produtos cadastrados no sistema
     private List<Produto> produtos = new ArrayList<>();
 
