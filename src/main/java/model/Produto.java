@@ -12,3 +12,22 @@ public class Produto extends Item {
         this.quantidadeEstoque = quantidadeEstoque;
         this.categoria = categoria;
     }
+    // Retorna a quantidade em estoque
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    // Atualiza a quantidade em estoque
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    // Retorna a categoria do produto
+    public String getCategoria() {
+        return categoria;
+    }
+
+    // Atualiza a categoria do produto
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
