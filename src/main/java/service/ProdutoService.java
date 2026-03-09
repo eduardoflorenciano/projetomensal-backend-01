@@ -71,4 +71,21 @@ public class ProdutoService {
             System.out.println("\u001B[31mNenhum produto encontrado com esse nome\u001B[0m");
         }
     }
+
+    // Filtro, exibe produtos que pertençam à categoria buscada
+    public void buscarPorCategoria(String categoria) {
+        System.out.println("\n\033[34m======\033[0m BUSCA POR CATEGORIA: " + categoria + " \033[34m======\033[0m");
+        boolean encontrou = false;
+        for (Produto p : produtos) {
+            if (p.getCategoria().toLowerCase().contains(categoria.toLowerCase())) {
+                System.out.println(p.exibirDetalhes());
+                encontrou = true;
+            }
+        }
+        if (!encontrou) {
+            System.out.println("\u001B[31mNenhum produto encontrado nessa categoria\u001B[0m");
+        }
+    }
+
+
 }
