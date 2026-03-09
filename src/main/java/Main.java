@@ -134,4 +134,70 @@ public class Main {
         System.out.println("0 - Sair");
         System.out.println("\u001B[36m============================\u001B[0m");
     }
+
+    // Exibe as opções do menu de produtos
+    static void exibirMenuProdutos() {
+        System.out.println("\n\033[34m======\033[0m MENU DE PRODUTOS \033[34m======\033[0m");
+        System.out.println("1 - Cadastrar Produto");
+        System.out.println("2 - Listar Produtos");
+        System.out.println("3 - Atualizar Produto");
+        System.out.println("4 - Remover Produto");
+        System.out.println("5 - Buscar por Nome");
+        System.out.println("6 - Buscar por Categoria");
+        System.out.println("7 - Relatório de Produtos");
+        System.out.println("0 - Voltar");
+        System.out.println("\033[34m==============================\033[0m");
+    }
+
+    // Loop do submenu de produtos, permanece até o usuário voltar
+    static void menuProdutos() {
+        int opcao = -1;
+
+        while (opcao != 0) {
+            exibirMenuProdutos();
+            opcao = lerInteiro("Escolha uma opção: ");
+            switch (opcao) {
+                case 1:
+                    cadastraProdutos();
+                    break;
+
+                case 2:
+                    produtoService.listarTodos();
+                    break;
+
+                case 3:
+                    atualizarProduto();
+                    break;
+
+                case 4:
+                    // Lista os produtos para o usuário ver os IDs antes de remover
+                    System.out.println("\n\033[34m======\033[0m REMOVER PRODUTO \033[34m======\033[0m");
+                    produtoService.listarTodos();
+                    int idRemover = lerInteiro("ID do produto a remover: ");
+                    produtoService.remover(idRemover);
+                    break;
+
+                case 5:
+                    String buscarNome = lerTexto("Digite o nome para buscar: ");
+                    produtoService.buscarPorNome(buscarNome);
+                    break;
+
+                case 6:
+                    String buscarCategoria = lerTexto("Digite a categoria para buscar: ");
+                    produtoService.buscarPorCategoria(buscarCategoria);
+                    break;
+
+                case 7:
+                    produtoService.exibirRelatorio();
+                    break;
+
+                case 0:
+                    System.out.println("\u001B[33mVoltando ao menu principal\u001B[0m");
+                    break;
+
+                default:
+                    System.out.println("\u001B[31mOpção inválida! Tente novamente\u001B[0m");
+            }
+        }
+    }
 }
