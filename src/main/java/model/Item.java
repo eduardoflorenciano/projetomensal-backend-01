@@ -38,3 +38,13 @@ public abstract class Item {
     public void setPreco(double preco) {
         this.preco = preco;
     }
+
+    // Método abstrato, cada subclasse implementa do seu jeito (polimorfismo)
+    public abstract String exibirDetalhes();
+
+    // Ao imprimir um Item, chama exibirDetalhes() automaticamente
+    @Override
+    public String toString() {
+        return exibirDetalhes();
+    }
+}
