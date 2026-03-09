@@ -200,4 +200,59 @@ public class Main {
             }
         }
     }
+
+    // Coleta os dados do novo produto, estoque não pode ser zero no cadastro
+    static void cadastraProdutos() {
+        System.out.println("\033[34m======\033[0m CADASTRAR PRODUTO \033[34m======\033[0m");
+        String nome = lerTexto("Nome do produto: ");
+        double preco = lerDouble("Preço (ex: R$ 199.90): R$ ");
+        // Impede cadastro com valor do produto esteja zerado ou negativo
+        while (preco <= 0) {
+            preco = lerDouble("\u001B[33mPor favor, ensira um valor acima de 0 para o preço:\u001B[0m ");
+        }
+        int estoque = lerInteiro("Quantidade em estoque: ");
+        // Impede cadastro com estoque zerado ou negativo
+        while (estoque <= 0) {
+            estoque = lerInteiro("\u001B[33mPor favor, ensira um valor acima de 0 em estoque:\u001B[0m ");
+        }
+        String categoria = escolhaCategoria();
+        produtoService.cadastrar(nome, preco, estoque, categoria);
+    }
+
+    // Coleta os novos dados, pede confirmação se o estoque for zerado
+    static void atualizarProduto() {
+        System.out.println("\n\033[34m======\033[0m ATUALIZAR PRODUTO \033[34m======\033[0m");
+        produtoService.listarTodos();
+        int idAtualizar = lerInteiro("ID do produto a atualizar: ");
+        String novoNome = lerTexto("Novo nome: ");
+        double novoPreco = lerDouble("Novo preço: R$ ");
+        // Impede cadastro com valor do produto esteja zerado ou negativo
+        while (novoPreco <= 0) {
+            novoPreco = lerDouble("\u001B[33mPor favor, ensira um valor acima de 0 para o preço:\u001B[0m ");
+        }
+        boolean continuarEstoque = false;
+        int novoEstoque = lerInteiro("Quantidade em estoque: ");
+
+        while (!continuarEstoque) {
+            if (novoEstoque <= 0) {
+                // Estoque zerado, pede confirmação antes de salvar
+                System.out.println("\u001B[33mTem certeza em deixar o estoque zerado?\u001B[0m ");
+                char continuar = lerChar("\u001B[33m(S para SIM e N para NÃO):\u001B[0m ");
+                if (continuar == 's' || continuar == 'S') {
+                    continuarEstoque = true;
+                    String categoria2 = escolhaCategoria();
+                    produtoService.atualizar(idAtualizar, novoNome, novoPreco, novoEstoque, categoria2);
+                    break;
+                } else {
+                    // Usuário não confirmou, pede o estoque novamente
+                    novoEstoque = lerInteiro("\u001B[33mPor favor, ensira novamente a quantidade em estoque:\u001B[0m ");
+                }
+            } else {
+                // Estoque válido, salva normalmente
+                String categoria2 = escolhaCategoria();
+                produtoService.atualizar(idAtualizar, novoNome, novoPreco, novoEstoque, categoria2);
+                break;
+            }
+        }
+    }
 }
