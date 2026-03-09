@@ -87,6 +87,34 @@ public class Main {
         return logado;
     }
 
+    // Coleta email e senha, o usuário tem 3 tentativas antes de voltar ao menu
+    static Usuario fluxoDeLogin() {
+        int tentativas = 3;
 
+        while (tentativas > 0) {
+            System.out.println("\n\u001B[36m======\u001B[0m LOGIN \u001B[36m======\u001B[0m");
+            String email = lerTexto("Email: ");
+            String senha = lerSenha("Senha: ");
+
+            Usuario usuario = authService.login(email, senha);
+
+            // Login correto, retorna o usuário autenticado
+            if (usuario != null) {
+                System.out.println("\n\u001B[32mLogin realizado com sucesso!\u001B[0m");
+                return usuario;
+            }
+
+            // Login errado, desconta uma tentativa
+            tentativas--;
+            if (tentativas > 0) {
+                System.out.println("\u001B[31mEmail ou senha incorretos! Tentativas restantes:\u001B[0m " + tentativas);
+            } else {
+                System.out.println("\u001B[33mNúmero de tentativas esgotado. Voltando ao menu de login\u001B[0m");
+            }
+        }
+
+        // Retorna null para indicar falha no login
+        return null;
+    }
 
 }
