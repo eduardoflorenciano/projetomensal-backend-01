@@ -116,5 +116,14 @@ public class ServicoService {
         System.out.println("Serviço mais rápido: " + maisRapido.getNome() + " (" + maisRapido.getDuracaoMinutos() + " min)");
     }
 
+    // Busca um serviço na lista pelo ID, reutilizado em atualizar() e remover()
+    private Servico buscarPorId(int id) {
+        for (Servico s : servicos) {
+            if (s.getId() == id) {
+                return s;
+            }
+        }
+        return null;
+    }
 
 }
