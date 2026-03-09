@@ -29,4 +29,31 @@ public class ServicoService {
             System.out.println(s.exibirDetalhes());
         }
     }
+
+    // Atualizar, busca pelo ID e substitui os dados do serviço
+    public void atualizar(int id, String novoNome, double novoPreco, int novaDuracao, String novoTipo) {
+        Servico servico = buscarPorId(id);
+        if (servico == null) {
+            System.out.println("\u001B[31mServiço com ID\u001B[0m " + id + " \u001B[31mnão encontrado\u001B[0m");
+            return;
+        }
+        servico.setNome(novoNome);
+        servico.setPreco(novoPreco);
+        servico.setDuracaoMinutos(novaDuracao);
+        servico.setTipo(novoTipo);
+        System.out.println("\u001B[32mServiço atualizado com sucesso!\u001B[0m");
+    }
+
+    // Remover, busca pelo ID e remove o serviço da lista
+    public void remover(int id) {
+        Servico servico = buscarPorId(id);
+        if (servico == null) {
+            System.out.println("\u001B[31mServiço com ID\u001B[0m " + id + " \u001B[31mnão encontrado\u001B[0m");
+            return;
+        }
+        servicos.remove(servico);
+        System.out.println("\u001B[32mServiço removido com sucesso!\u001B[0m");
+    }
+
+
 }
