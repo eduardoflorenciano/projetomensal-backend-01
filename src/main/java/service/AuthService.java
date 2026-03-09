@@ -13,14 +13,6 @@ public class AuthService {
         usuarios.add(new Admin("Administrador", "admin@oficina.com", "admin123"));
     }
 
-    // Cadastra um novo usuário se o email aina não existir
-    public void cadastrarUsuario(String nome, String email, String senha) {
-        if (buscarPorEmail(email) != null) {
-            System.out.println("\u001B[33mEste email já está cadastrado\u001B[0m");
-            return;
-        }
-        usuarios.add(new Admin(nome, email, senha));
-        System.out.println("\u001B[32mUsuário cadastrado com sucesso!\u001B[0m");
-    }
+
 
 }
