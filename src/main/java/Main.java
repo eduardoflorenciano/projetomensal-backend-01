@@ -383,5 +383,65 @@ public class Main {
         }
     }
 
+    // Lê inteiro com segurança, não quebra se o usuário digitar letras
+    static int lerInteiro(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            try {
+                return Integer.parseInt(scanner.nextLine().trim());
+            } catch (NumberFormatException e) {
+                System.out.println("\u001B[33mEntrada inválida! Digite apenas números inteiros (ex: 1, 7, 44, etc)\u001B[0m");
+            }
+        }
+    }
 
+    // Lê um decimal com segurança, aceita vírgula ou ponto como separador
+    static double lerDouble(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            try {
+                return Double.parseDouble(scanner.nextLine().trim().replace(",", "."));
+            } catch (NumberFormatException e) {
+                System.out.println("\u001B[33mEntrada inválida! Digite um valor numérico (ex: 49.90)\u001B[0m");
+            }
+        }
+    }
+
+    // Lê um texto garantindo que não seja vazio
+    static String lerTexto(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            String texto = scanner.nextLine().trim();
+            if (!texto.isEmpty()) {
+                return texto;
+            }
+            System.out.println("\u001B[33mCampo obrigatório! Por favor, preencha\u001B[0m");
+        }
+    }
+
+    // Lê uma senha sem remover espaços, senhas podem ter espaços intencionais
+    static String lerSenha(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            String senha = scanner.nextLine();
+            if (!senha.isEmpty()) {
+                return senha;
+            }
+            System.out.println("\u001B[33mA senha não pode ser vazia!\u001B[0m");
+        }
+    }
+
+    // Lê um único caractere, usado na confirmação de estoque zerado
+    static char lerChar(String mensagem) {
+        while (true) {
+            System.out.print(mensagem);
+            String texto = scanner.nextLine().trim();
+
+            if (!texto.isEmpty()) {
+                // Retorna apenas o primeiro caractere
+                return texto.charAt(0);
+            }
+            System.out.println("\u001B[33mCampo obrigatório! Por favor, preencha\u001B[0m");
+        }
+    }
 }
