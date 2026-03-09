@@ -8,5 +8,7 @@ public class Main {
 
         int idade = 20;
         System.out.println("Idade = " + idade);
+
+        System.out.println("Corinthians campeão");
     }
 }
